@@ -1,7 +1,7 @@
 var cordova = require('cordova');
 
 var carrier = {
-	getCarrierName : function(successCallback, errorCallback) {
+	getAverageNoise : function(successCallback, errorCallback) {
 		/* 
 
 		cordova.exec passes control to native code
@@ -19,13 +19,9 @@ var carrier = {
 
 		*/ 
 		cordova.exec(successCallback, errorCallback,
-		 'CarrierPlugin', 'getCarrierName', []);
-	},
-
-	getCountryCode : function(successCallback, errorCallback) { 
-		cordova.exec(successCallback, errorCallback,
-		'CarrierPlugin', 'getCountryCode', []); 
+		 'CarrierPlugin', 'getAverageNoise', []);
 	}
+
 };
 
 
