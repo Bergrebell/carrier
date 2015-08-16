@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" id="com.cordovaprogramming.carrier" version="1.0.0">
+	<name>Carrier</name>
+	<author>John M. Wargo</author>
+	<description>Exposes mobile carrier related values to a Cordova application.</description> 
+	<keywords>carrier</keywords>
+	<license>Apache 2.0 License</license>
+
+	<engines>
+		<engine name="cordova" version="3.8.0" />
+	</engines>
+
+	<js-module src="carrier.js" name="carrier">
+		<clobbers target="carrier" />
+	</js-module>
+
+	<platform name="ios">
+		<!-- ios-specific elements -->
+		<header-file src="src/ios/CarrierPlugin.h" /> 
+		<source-file src="src/ios/CarrierPlugin.m" /> 
+		<config-file target="config.xml" parent="/*">
+			<feature name="CarrierPlugin" >
+				<param name="ios-package" value="CarrierPlugin"/>
+			</feature> 
+		</config-file>
+	</platform>
+
+</plugin>
