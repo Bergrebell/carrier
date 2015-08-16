@@ -1,3 +1,4 @@
+#import <Cordova/CDVPlugin.h>
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
 #import <CoreAudio/CoreAudioTypes.h>
