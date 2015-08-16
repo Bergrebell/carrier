@@ -1,10 +1,13 @@
-#import <Cordova/CDVPlugin.h>
+#import <UIKit/UIKit.h>
+#import <AVFoundation/AVFoundation.h>
+#import <CoreAudio/CoreAudioTypes.h>
+
 
 @interface CarrierPlugin : CDVPlugin {
-
+	AVAudioRecorder *recorder;
+    NSTimer *leveltimer;
 }
 
-- (void)getCarrierName:(CDVInvokedUrlCommand*)command;
-- (void)getCountryCode:(CDVInvokedUrlCommand*)command;
+- (void)getAverageNoise:(CDVInvokedUrlCommand*)command;
 
 @end

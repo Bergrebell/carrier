@@ -1,31 +1,44 @@
-#import "CarrierPlugin.h"
-#import <CoreTelephony/CTTelephonyNetworkInfo.h> 
-#import <CoreTelephony/CTCarrier.h>
+#import "ViewController.h"
+
 
 @implementation 
 
-- (void)getCarrierName:(CDVInvokedUrlCommand*)command
-{
-	// defining of a netinfo object; alloc usw gehört zur objekterstellung
-	CTTelephonyNetworkInfo *netinfo = [[CTTelephonyNetworkInfo alloc] init];
-	// methodenaufruf und speichern in variable vom typ CTCarrier mit namen carrier
-	CTCarrier *carrier = [netinfo subscriberCellularProvider];
 
-	// speichert variable "result" vom typ CDVPluginResult
-	CDVPluginResult* result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK 
-messageAsString:[carrier carrierName]];
+
+- (void)getAverageNoise:(CDVInvokedUrlCommand*)command
+{
+    
+    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
+    
+    NSURL *url = [NSURL fileURLWithPath:@"/dev/null"];
+    
+  	NSDictionary *settings = [NSDictionary dictionaryWithObjectsAndKeys:
+                              [NSNumber numberWithFloat: 44100.0],                 AVSampleRateKey,
+                              [NSNumber numberWithInt: kAudioFormatAppleLossless], AVFormatIDKey,
+                              [NSNumber numberWithInt: 1],                         AVNumberOfChannelsKey,
+                              [NSNumber numberWithInt: AVAudioQualityMax],         AVEncoderAudioQualityKey,
+                              nil];
+    
+  	NSError *error;
+    
+  	recorder = [[AVAudioRecorder alloc] initWithURL:url settings:settings error:&error];
+    
+  	if (recorder) {
+  		[recorder prepareToRecord];
+  		recorder.meteringEnabled = YES;
+  		[recorder record];
+
+  		[recorder updateMeters];
+
+    	CDVPluginResult* result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK 
+messageAsString:[recorder averagePowerForChannel:0]];
+    	NSLog(@"Average input: %f Peak input: %f", [recorder averagePowerForChannel:0], [recorder peakPowerForChannel:0]);
 	// the method calls the appropriate callback function to complete the process
 	[self.commandDelegate sendPluginResult:result callbackId:[command callbackId]];
+
+  	} else
+  		NSLog([error description]);
 }
 
-- (void)getCountryCode:(CDVInvokedUrlCommand*)command
-{
-	CTTelephonyNetworkInfo *netinfo = [[CTTelephonyNetworkInfo alloc] init];
-	CTCarrier *carrier = [netinfo subscriberCellularProvider];
-
-	CDVPluginResult* result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK
-messageAsString:[carrier isoCountryCode]];
-	[self.commandDelegate sendPluginResult:result callbackId:[command callbackId]];
-}
 
 @end
