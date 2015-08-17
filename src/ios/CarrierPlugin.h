@@ -2,8 +2,8 @@
 
 @interface CarrierPlugin : CDVPlugin {
     
-@property AVAudioRecorder *recorder;
-@property NSTimer *leveltimer;
+AVAudioRecorder *recorder;
+NSTimer *leveltimer;
 }
 
 - (void)getAverageNoise:(CDVInvokedUrlCommand*)command;
