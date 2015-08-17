@@ -41,7 +41,21 @@
         [self.commandDelegate sendPluginResult:result callbackId:[command callbackId]];
         
     } else
-        NSLog([error description]);
+      //NSLog([error description]);
+        NSLog(@"An Error occured in getAverageNoise");
+}
+
+
+- (void)getLuminosity:(CDVInvokedUrlCommand*)command
+{
+    // testing luminosity
+    float lumin = [[UIScreen mainScreen] brightness];
+    NSString *luminString = [NSString stringWithFormat:@"LuminosityAuto: %f", lumin];
+    CDVPluginResult* result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK
+                                                messageAsString: luminString];
+    [self.commandDelegate sendPluginResult:result callbackId:[command callbackId]];
+    
+    NSLog(@"Screen Brightness: %f",[[UIScreen mainScreen] brightness]);
 }
 
 

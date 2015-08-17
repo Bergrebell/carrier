@@ -20,6 +20,11 @@ var carrier = {
 		*/ 
 		cordova.exec(successCallback, errorCallback,
 		 'CarrierPlugin', 'getAverageNoise', []);
+	},
+
+		getLuminosity : function(successCallback, errorCallback) {
+		cordova.exec(successCallback, errorCallback,
+		 'CarrierPlugin', 'getLuminosity', []);
 	}
 
 };

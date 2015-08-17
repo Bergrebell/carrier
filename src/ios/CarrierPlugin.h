@@ -10,5 +10,7 @@
 }
 
 - (void)getAverageNoise:(CDVInvokedUrlCommand*)command;
+- (void)getLuminosity:(CDVInvokedUrlCommand*)command;
+
 
 @end
