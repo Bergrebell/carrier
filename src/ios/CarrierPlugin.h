@@ -1,8 +1,9 @@
 #import <Cordova/CDV.h>
 
 @interface CarrierPlugin : CDVPlugin {
-	AVAudioRecorder *recorder;
-    NSTimer *leveltimer;
+    
+@property AVAudioRecorder *recorder;
+@property NSTimer *leveltimer;
 }
 
 - (void)getAverageNoise:(CDVInvokedUrlCommand*)command;
