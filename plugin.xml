@@ -7,7 +7,7 @@
 	<license>Apache 2.0 License</license>
 
 	<engines>
-		<engine name="cordova" version="3.8.0" />
+		<engine name="cordova" version="3.9.1" />
 	</engines>
     // src = name des plugin-js
 	<js-module src="carrier.js" name="carrier">
@@ -20,6 +20,8 @@
 		<header-file src="src/ios/CarrierPlugin.h" /> 
 		<source-file src="src/ios/CarrierPlugin.m" /> 
 		<config-file target="config.xml" parent="/*">
+            <!-- name should match what you specify as the JavaScript exec call's service parameter.
+             alue attribute should match the name of the plugin's Objective-C class -->
 			<feature name="CarrierPlugin" >
 				<param name="ios-package" value="CarrierPlugin"/>
 			</feature> 
