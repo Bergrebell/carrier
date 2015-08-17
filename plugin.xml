@@ -9,8 +9,9 @@
 	<engines>
 		<engine name="cordova" version="3.8.0" />
 	</engines>
-
+    // src = name des plugin-js
 	<js-module src="carrier.js" name="carrier">
+        // clobbers sets namespace --> carrier.doSth()
 		<clobbers target="carrier" />
 	</js-module>
 
