@@ -31,7 +31,7 @@
         [recorder updateMeters];
         
         float averageNS = [recorder averagePowerForChannel:0];
-        NSString *averageString = [NSString stringWithFormat:@"Average: %f", averageNS];
+        NSString *averageString = [NSString stringWithFormat:@"%f", averageNS];
         
         CDVPluginResult* result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK
                                                     messageAsString: averageString];
@@ -50,7 +50,7 @@
 {
     // testing luminosity
     float lumin = [[UIScreen mainScreen] brightness];
-    NSString *luminString = [NSString stringWithFormat:@"LuminosityAuto: %f", lumin];
+    NSString *luminString = [NSString stringWithFormat:@"%f", lumin];
     CDVPluginResult* result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK
                                                 messageAsString: luminString];
     [self.commandDelegate sendPluginResult:result callbackId:[command callbackId]];
