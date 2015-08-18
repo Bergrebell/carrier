@@ -9,6 +9,7 @@
 	<engines>
 		<engine name="cordova" version="3.9.1" />
 		<engine name="cordova" version="3.5.2" />
+		<engine name="cordova" version="3.8.0" />
 	</engines>
     // src = name des plugin-js
 	<js-module src="carrier.js" name="carrier">
