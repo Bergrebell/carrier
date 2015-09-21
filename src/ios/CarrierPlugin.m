@@ -33,12 +33,17 @@
         [recorder updateMeters];
         
         float averageNS = [recorder averagePowerForChannel:0];
-        NSString *averageString = [NSString stringWithFormat:@"%f", averageNS];
+        // convert power level into linar range
+        double percentage = pow (10, (0.05 * averageNS));
+        
+        NSString *averageString = [NSString stringWithFormat:@"%f", percentage];
         
         CDVPluginResult* result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK
                                                     messageAsString: averageString];
         
         NSLog(@"Average input: %f Peak input: %f", [recorder averagePowerForChannel:0], [recorder peakPowerForChannel:0]);
+        NSLog(@"Average input in percentage: %f", percentage);
+
         // the method calls the appropriate callback function to complete the process
         [self.commandDelegate sendPluginResult:result callbackId:[command callbackId]];
         
